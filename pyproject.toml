@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mapper_parser"
+version = "0.0.1"
+authors = [
+  { name="Oliver Li", email="441640312@qq.com" },
+]
+description = "Mybatis mapper xml file parser"
+readme = "README.md"
+license = { file="LICENSE" }
+requires-python = ">=3.0"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/baikaishuipp/mapper-parser"
+"Bug Tracker" = "https://github.com/baikaishuipp/mapper-parser/issues"

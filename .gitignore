@@ -1,0 +1,4 @@
+.idea/
+dist/
+src/mapper_parser.egg-info/
+test/
