@@ -35,6 +35,12 @@ def extract_value(string, tag):
     else:
         return None
 
+def check_string(tag, id_str, string):
+    pattern = r'^' + tag + '.*?id\s*=\s*"' + id_str + '"'
+    match = re.search(pattern, string)
+    return bool(match)
+
+
 def parse(filepath):
     # 读取XML文件内容
     with open(filepath, "r", encoding="utf-8") as file:
@@ -60,7 +66,7 @@ def parse(filepath):
         start_line = 0
         end_line = 0
         for i, line in enumerate(xml_content.splitlines(), start=1):
-            if line.strip().startswith('<resultMap') and f'id="{result_map_id}"' in line:
+            if check_string('<resultMap', result_map_id, line.strip()):
                 start_line = i
             if f'</resultMap>' in line and start_line != 0:
                 end_line = i
@@ -74,7 +80,7 @@ def parse(filepath):
         start_line = 0
         end_line = 0
         for i, line in enumerate(xml_content.splitlines(), start=1):
-            if line.strip().startswith('<sql') and f'id="{sql_id}"' in line:
+            if check_string('<sql', sql_id, line.strip()):
                 start_line = i
             if f'</sql>' in line and start_line != 0:
                 end_line = i
@@ -91,7 +97,7 @@ def parse(filepath):
         result_map = None
         include_sql = None
         for i, line in enumerate(xml_content.splitlines(), start=1):
-            if f'<{statement_element.tag} id="{statement_id}"' in line:
+            if check_string('<' + statement_element.tag, statement_id, line.strip()):
                 start_line = i
             if f'resultMap="' in line and start_line != 0:
                 result_map = extract_value(line, 'resultMap')
