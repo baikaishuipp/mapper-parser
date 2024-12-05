@@ -1,4 +1,4 @@
-
+![PyPI Downloads](https://static.pepy.tech/badge/mapper-parser)
 ### Description
 Mybatis mapper xml file parser in pure python, get result contains:
 
